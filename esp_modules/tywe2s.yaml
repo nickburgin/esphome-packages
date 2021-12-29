@@ -1,0 +1,4 @@
+esphome:
+  name: ${node_name}
+  platform: ESP8266
+  board: esp8285

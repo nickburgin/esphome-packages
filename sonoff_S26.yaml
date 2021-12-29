@@ -1,0 +1,27 @@
+substitutions:
+  link_led_pin: GPIO13
+
+esphome:
+  name: ${node_name}
+  platform: ESP8266
+  board: sonoff_s20
+
+binary_sensor:
+- platform: gpio
+  pin:
+    number: GPIO0
+    mode: INPUT_PULLUP
+    inverted: true
+  name: "Button"
+  on_press:
+    - switch.toggle: relay
+- platform: status
+  name: "Status"
+
+switch:
+- platform: gpio
+  name: "Switch"
+  pin: GPIO12
+  id: relay
+
+!include common/link_led.yaml

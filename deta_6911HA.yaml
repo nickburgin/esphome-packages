@@ -1,0 +1,28 @@
+<<: !include esp_modules/esp12s.yaml
+<<: !include common/link_led.yaml
+
+substitutions:
+  link_led_pin: GPIO4
+
+binary_sensor:
+- platform: gpio
+  pin:
+    number: GPIO16
+    inverted: true
+  name: "Button"
+  on_press:
+    - switch.toggle: relay
+- platform: status
+  name: "Status"
+
+switch:
+- platform: gpio
+  name: "Switch"
+  pin: GPIO13
+  id: relay
+
+output:
+- platform: esp8266_pwm
+  id: link_led
+  pin: GPIO4
+  inverted: true

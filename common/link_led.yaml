@@ -1,0 +1,10 @@
+output:
+- platform: esp8266_pwm
+  id: link_led
+  pin: ${link_led_pin}
+  inverted: true
+
+light:
+- platform: monochromatic
+  name: "Link LED"
+  output: link_led

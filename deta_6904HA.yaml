@@ -1,0 +1,55 @@
+<<: !include esp_modules/esp12s.yaml
+<<: !include common/link_led.yaml
+
+substitutions:
+  link_led_pin: GPIO0
+
+binary_sensor:
+- platform: gpio
+  pin:
+    number: GPIO4
+    inverted: true
+  name: "Top Left Button"
+  on_press:
+    - switch.toggle: relay_top_left
+- platform: gpio
+  pin:
+    number: GPIO3
+    inverted: true
+  name: "Top Right Button"
+  on_press:
+    - switch.toggle: relay_top_right
+- platform: gpio
+  pin:
+    number: GPIO16
+    inverted: true
+  name: "Bottom Left Button"
+  on_press:
+    - switch.toggle: relay_bottom_left
+- platform: gpio
+  pin:
+    number: GPIO13
+    inverted: true
+  name: "Bottom Right Button"
+  on_press:
+    - switch.toggle: relay_bottom_right
+- platform: status
+  name: "Status"
+
+switch:
+- platform: gpio
+  name: "Top Left Switch"
+  pin: GPIO14
+  id: relay_top_left
+- platform: gpio
+  name: "Top Right Switch"
+  pin: GPIO12
+  id: relay_top_right
+- platform: gpio
+  name: "Bottom Left Switch"
+  pin: GPIO5
+  id: relay_bottom_left
+- platform: gpio
+  name: "Bottom Right Switch"
+  pin: GPIO15
+  id: relay_bottom_right
