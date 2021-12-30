@@ -5,6 +5,7 @@
 
 substitutions:
   status_led_pin: GPIO4
+  icon: "mdi:lightbulb"
 
 binary_sensor:
   - platform: gpio
@@ -20,6 +21,7 @@ binary_sensor:
 light:
   - platform: binary
     name: ${node_name_upper}
+    icon: ${icon}
     output: light_output
     id: relay
 

@@ -6,7 +6,9 @@
 substitutions:
   status_led_pin: GPIO4
   left_name: "Left"
+  left_icon: "mdi:lightbulb"
   right_name: "Right"
+  right_icon: "mdi:lightbulb"
 
 binary_sensor:
 - platform: gpio
@@ -29,10 +31,12 @@ binary_sensor:
 light:
 - platform: binary
   name: ${left_name}
+  icon: ${left_icon}
   output: light_output_left
   id: relay_left
 - platform: binary
   name: ${right_name}
+  icon: ${right_icon}
   output: light_output_right
   id: relay_right
 
