@@ -29,14 +29,14 @@ binary_sensor:
 
 switch:
 - platform: gpio
-  name: ${left_name}
+  name: ${right_name}
   pin: GPIO14
   id: relay_right
 
 light:
 - platform: binary
-  name: ${right_name}
-  icon: ${right_icon}
+  name: ${left_name}
+  icon: ${left_icon}
   output: light_output_left
   id: relay_left
 
