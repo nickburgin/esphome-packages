@@ -1,6 +1,6 @@
 # Smart outlet
 
-<<: !include esp_modules/esp12s.yaml
+<<: !include esp_modules/tywe3s.yaml
 <<: !include common/link_led.yaml
 
 substitutions:

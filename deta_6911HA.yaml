@@ -1,6 +1,6 @@
 # Single smart switch
 
-<<: !include esp_modules/esp12s.yaml
+<<: !include esp_modules/tywe3s.yaml
 <<: !include common/link_led.yaml
 
 substitutions:
@@ -11,7 +11,7 @@ binary_sensor:
   pin:
     number: GPIO16
     inverted: true
-  name: "#{node_name_upper} Button"
+  name: "${node_name_upper} Button"
   on_press:
     - switch.toggle: relay
 - platform: status
