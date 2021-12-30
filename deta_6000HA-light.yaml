@@ -14,12 +14,17 @@ binary_sensor:
       inverted: true
     name: "${node_name_upper} Button"
     on_press:
-      - switch.toggle: relay
+      - light.toggle: relay
   - platform: status
     name: "${node_name_upper} Status"
 
-switch:
-  - platform: gpio
-    name: "${node_name_upper}"
-    pin: GPIO14
+light:
+  - platform: binary
+    name: ${node_name_upper}
+    output: light_output
     id: relay
+
+output:
+  - platform: gpio
+    pin: GPIO14
+    id: light_output

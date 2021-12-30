@@ -1,4 +1,4 @@
-# 2 way smart switch
+# Smart outlet
 
 <<: !include esp_modules/tywe3s.yaml
 <<: !include common/status_led.yaml
@@ -15,23 +15,31 @@ binary_sensor:
     inverted: true
   name: "${left_name} Button"
   on_press:
-    - switch.toggle: relay_left
+    - light.toggle: relay_left
 - platform: gpio
   pin:
     number: GPIO12
     inverted: true
   name: "${right_name} Button"
   on_press:
-    - switch.toggle: relay_right
+    - light.toggle: relay_right
 - platform: status
   name: "${node_name_upper} Status"
 
 switch:
-- platform: gpio
+- platform: binary
   name: ${left_name}
-  pin: GPIO13
+  output: light_output_left
   id: relay_left
-- platform: gpio
+- platform: binary
   name: ${right_name}
-  pin: GPIO14
+  output: light_output_right
   id: relay_right
+
+output:
+- platform: gpio
+  pin: GPIO13
+  id: light_output_left
+- platform: gpio
+  pin: GPIO14
+  id: light_output_right

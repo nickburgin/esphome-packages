@@ -1,0 +1,29 @@
+# Single smart switch
+
+<<: !include esp_modules/tywe3s.yaml
+<<: !include common/status_led.yaml
+
+substitutions:
+  status_led_pin: GPIO4
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO16
+      inverted: true
+    name: "${node_name_upper} Button"
+    on_press:
+      - light.toggle: relay
+  - platform: status
+    name: "${node_name_upper} Status"
+
+light:
+  - platform: binary
+    name: ${node_name_upper}
+    output: light_output
+    id: relay
+
+output:
+  - platform: gpio
+    pin: GPIO13
+    id: light_output

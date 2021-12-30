@@ -1,10 +1,10 @@
 # Smart outlet
 
 <<: !include esp_modules/tywe3s.yaml
-<<: !include common/link_led.yaml
+<<: !include common/status_led.yaml
 
 substitutions:
-  link_led_pin: GPIO4
+  status_led_pin: GPIO4
   left_name: "Left"
   right_name: "Right"
 

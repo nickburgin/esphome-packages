@@ -1,10 +1,10 @@
 # 4 way smart switch
 
 <<: !include esp_modules/tywe3s.yaml
-<<: !include common/link_led.yaml
+<<: !include common/status_led.yaml
 
 substitutions:
-  link_led_pin: GPIO0
+  status_led_pin: GPIO0
   top_left_name: "Top Left"
   top_right_name: "Top Right"
   bottom_left_name: "Bottom Left"

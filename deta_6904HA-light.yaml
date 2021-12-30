@@ -1,0 +1,75 @@
+# 4 way smart switch
+
+<<: !include esp_modules/tywe3s.yaml
+<<: !include common/status_led.yaml
+
+substitutions:
+  status_led_pin: GPIO0
+  top_left_name: "Top Left"
+  top_right_name: "Top Right"
+  bottom_left_name: "Bottom Left"
+  bottom_right_name: "Bottom Right"
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO4
+      inverted: true
+    name: "${top_left_name} Button"
+    on_press:
+      - light.toggle: relay_top_left
+  - platform: gpio
+    pin:
+      number: GPIO3
+      inverted: true
+    name: "${top_right_name} Button"
+    on_press:
+      - light.toggle: relay_top_right
+  - platform: gpio
+    pin:
+      number: GPIO16
+      inverted: true
+    name: "${bottom_left_name} Button"
+    on_press:
+      - light.toggle: relay_bottom_left
+  - platform: gpio
+    pin:
+      number: GPIO13
+      inverted: true
+    name: "${bottom_right_name} Button"
+    on_press:
+      - light.toggle: relay_bottom_right
+  - platform: status
+    name: "${node_name_upper} Status"
+
+light:
+  - platform: binary
+    name: ${top_left_name}
+    output: output_top_left
+    id: relay_top_left
+  - platform: binary
+    name: ${top_right_name}
+    output: output_top_right
+    id: relay_top_right
+  - platform: binary
+    name: ${bottom_left_name}
+    output: output_bottom_left
+    id: relay_bottom_left
+  - platform: binary
+    name: ${bottom_right_name}
+    output: output_bottom_right
+    id: relay_bottom_right
+
+output:
+  - platform: gpio
+    pin: GPIO14
+    id: output_top_left
+  - platform: gpio
+    pin: GPIO12
+    id: output_top_right
+  - platform: gpio
+    pin: GPIO5
+    id: output_bottom_left
+  - platform: gpio
+    pin: GPIO15
+    id: output_bottom_right
