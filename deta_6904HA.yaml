@@ -1,55 +1,61 @@
+# 4 way smart switch
+
 <<: !include esp_modules/esp12s.yaml
 <<: !include common/link_led.yaml
 
 substitutions:
   link_led_pin: GPIO0
+  top_left_name: "Top Left"
+  top_right_name: "Top Right"
+  bottom_left_name: "Bottom Left"
+  bottom_right_name: "Bottom Right"
 
 binary_sensor:
 - platform: gpio
   pin:
     number: GPIO4
     inverted: true
-  name: "Top Left Button"
+  name: "${top_left_name} Button"
   on_press:
     - switch.toggle: relay_top_left
 - platform: gpio
   pin:
     number: GPIO3
     inverted: true
-  name: "Top Right Button"
+  name: "${top_right_name} Button"
   on_press:
     - switch.toggle: relay_top_right
 - platform: gpio
   pin:
     number: GPIO16
     inverted: true
-  name: "Bottom Left Button"
+  name: "${bottom_left_name} Button"
   on_press:
     - switch.toggle: relay_bottom_left
 - platform: gpio
   pin:
     number: GPIO13
     inverted: true
-  name: "Bottom Right Button"
+  name: "${bottom_right_name} Button"
   on_press:
     - switch.toggle: relay_bottom_right
 - platform: status
-  name: "Status"
+  name: "${node_name_upper} Status"
 
 switch:
 - platform: gpio
-  name: "Top Left Switch"
+  name: ${top_left_name}
   pin: GPIO14
   id: relay_top_left
 - platform: gpio
-  name: "Top Right Switch"
+  name: ${top_right_name}
   pin: GPIO12
   id: relay_top_right
 - platform: gpio
-  name: "Bottom Left Switch"
+  name: ${bottom_left_name}
   pin: GPIO5
   id: relay_bottom_left
 - platform: gpio
-  name: "Bottom Right Switch"
+  name: ${bottom_right_name}
   pin: GPIO15
   id: relay_bottom_right

@@ -1,33 +1,37 @@
+# Smart outlet
+
 <<: !include esp_modules/esp12s.yaml
 <<: !include common/link_led.yaml
 
 substitutions:
   link_led_pin: GPIO4
+  left_name: "Left"
+  right_name: "Right"
 
 binary_sensor:
 - platform: gpio
   pin:
     number: GPIO16
     inverted: true
-  name: "Left Button"
+  name: "${left_name} Button"
   on_press:
     - switch.toggle: relay_left
 - platform: gpio
   pin:
     number: GPIO12
     inverted: true
-  name: "Right Button"
+  name: "${right_name} Button"
   on_press:
     - switch.toggle: relay_right
 - platform: status
-  name: "Status"
+  name: "${node_name_upper} Status"
 
 switch:
 - platform: gpio
-  name: "Left Outlet"
+  name: ${left_name}
   pin: GPIO13
   id: relay_left
 - platform: gpio
-  name: "Right Outlet"
+  name: ${right_name}
   pin: GPIO14
   id: relay_right

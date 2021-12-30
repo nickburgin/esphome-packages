@@ -6,5 +6,5 @@ output:
 
 light:
 - platform: monochromatic
-  name: "Link LED"
+  name: "${node_name_upper} Link LED"
   output: link_led
