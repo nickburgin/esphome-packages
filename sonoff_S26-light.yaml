@@ -1,6 +1,6 @@
 # Sonoff smart plug
 
-!include common/status_led.yaml
+<<: !include common/status_led.yaml
 
 substitutions:
   status_led_pin: GPIO13
