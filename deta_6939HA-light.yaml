@@ -1,0 +1,32 @@
+# Inline smart switch
+
+<<: !include esp_modules/tywe2s.yaml
+<<: !include common/status_led.yaml
+
+substitutions:
+  status_led_pin: GPIO13
+  icon: "mdi:lightbulb"
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO1
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "${node_name_upper} Button"
+    on_press:
+      - light.toggle: relay
+  - platform: status
+    name: "${node_name_upper} Status"
+
+light:
+  - platform: binary
+    name: ${node_name_upper}
+    output: light_output
+    id: relay
+    icon: ${icon}
+
+output:
+  - platform: gpio
+    pin: GPIO14
+    id: light_output
