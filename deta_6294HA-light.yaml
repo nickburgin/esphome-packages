@@ -1,0 +1,70 @@
+# Smart outlet
+# The 6294 requires a module replacements, I have listed the tywe2s as the module as that is what I had the day I needed to make this work
+
+<<: !include esp_modules/tywe2s.yaml
+<<: !include common/status_led.yaml
+
+substitutions:
+  status_led_pin: GPIO5
+  left_name: "Left"
+  left_icon: "mdi:lightbulb"
+  right_name: "Right"
+  right_icon: "mdi:lightbulb"
+
+binary_sensor:
+- platform: gpio
+  pin:
+    number: GPIO4
+    inverted: true
+  name: "${left_name} Button"
+  on_press:
+    - light.toggle: relay_left
+- platform: gpio
+  pin:
+    number: GPIO12
+    inverted: true
+  name: "${right_name} Button"
+  on_press:
+    - light.toggle: relay_right
+- platform: status
+  name: "${node_name_upper} Status"
+
+light:
+- platform: binary
+  name: ${left_name}
+  icon: ${left_icon}
+  output: light_output_left
+  id: relay_left
+- platform: binary
+  name: ${right_name}
+  icon: ${right_icon}
+  output: light_output_right
+  id: relay_right
+
+output:
+- platform: gpio
+  pin: GPIO13
+  id: light_output_left
+- platform: gpio
+  pin: GPIO14
+  id: light_output_right
+
+# Power monitoring
+# Disable logging as it uses the same port
+logger:
+  baud_rate: 0
+
+uart:
+  rx_pin: RX
+  baud_rate: 4800
+
+sensor:
+  - platform: cse7766
+    current:
+      name: "${node_name_upper} Current"
+    voltage:
+      name: "${node_name_upper} Voltage"
+    power:
+      name: "${node_name_upper} Power"
+    energy:
+      name: "${node_name_upper} Energy"
