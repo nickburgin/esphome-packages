@@ -52,6 +52,8 @@ sensor:
       name: "${node_name_upper} Current"
     voltage:
       name: "${node_name_upper} Voltage"
+      filters:
+        - multiply: 1.859375
     power:
       name: "${node_name_upper} Power"
     energy:
