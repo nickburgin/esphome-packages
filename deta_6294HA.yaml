@@ -14,6 +14,9 @@ binary_sensor:
   pin:
     number: GPIO4
     inverted: true
+    mode:
+      input: true
+      pullup: true
   name: "${left_name} Button"
   on_press:
     - switch.toggle: relay_left
@@ -21,6 +24,9 @@ binary_sensor:
   pin:
     number: GPIO12
     inverted: true
+    mode:
+      input: true
+      pullup: true
   name: "${right_name} Button"
   on_press:
     - switch.toggle: relay_right
@@ -56,5 +62,7 @@ sensor:
         - multiply: 1.859375
     power:
       name: "${node_name_upper} Power"
+      filters:
+        - multiply: 1.874548
     energy:
       name: "${node_name_upper} Energy"
