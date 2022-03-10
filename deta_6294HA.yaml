@@ -59,10 +59,12 @@ sensor:
     voltage:
       name: "${node_name_upper} Voltage"
       filters:
-        - multiply: 1.859375
+        - multiply: 1.867
     power:
       name: "${node_name_upper} Power"
       filters:
-        - multiply: 1.874548
+        - multiply: 1.867
     energy:
       name: "${node_name_upper} Energy"
+      filters:
+        - multiply: 1.867
