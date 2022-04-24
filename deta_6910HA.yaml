@@ -1,0 +1,24 @@
+# Single smart dimmer (Light only)
+
+<<: !include esp_modules/esp12s.yaml
+
+substitutions:
+  icon: "mdi:lightbulb"
+
+logger:
+  baud_rate: 0
+
+uart:
+  rx_pin: GPIO3
+  tx_pin: GPIO1
+  baud_rate: 9600
+
+tuya:
+
+light:
+  - platform: "tuya"
+    name: ${node_name_upper}
+    icon: ${icon}
+    dimmer_datapoint: 3
+    min_value_datapoint: 2
+    switch_datapoint: 1
