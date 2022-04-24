@@ -1,4 +1,10 @@
 # Single smart dimmer (Light only)
+# Tuya:
+#   Datapoint 1: switch (value: OFF) (Switch)
+#   Datapoint 2: int value (value: 250) (Brightness 250-1000)
+#   Datapoint 3: int value (value: 255)
+#   Datapoint 6: int value (value: 0)
+#   Product: '{"p":"lacokft9if8yijui","v":"1.0.0","m":0}'
 
 <<: !include esp_modules/esp12s.yaml
 
@@ -19,6 +25,7 @@ light:
   - platform: "tuya"
     name: ${node_name_upper}
     icon: ${icon}
-    dimmer_datapoint: 3
-    min_value_datapoint: 2
+    dimmer_datapoint: 2
     switch_datapoint: 1
+    max_value: 1000
+    min_value: 250
