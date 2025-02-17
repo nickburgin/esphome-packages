@@ -1,0 +1,31 @@
+# Power monitoring
+# Disable logging as it uses the same port
+logger:
+  baud_rate: 0
+
+uart:
+  rx_pin: RX
+  baud_rate: 4800
+  parity: EVEN
+
+sensor:
+  - platform: cse7766
+    current:
+      name: "${node_name_upper} Current"
+      filters:
+        - throttle_average: ${update_interval}
+    voltage:
+      name: "${node_name_upper} Voltage"
+      filters:
+        - multiply: 1.867
+        - throttle_average: ${update_interval}
+    power:
+      name: "${node_name_upper} Power"
+      filters:
+        - multiply: 1.867
+        - throttle_average: ${update_interval}
+    energy:
+      name: "${node_name_upper} Energy"
+      filters:
+        - multiply: 1.867
+        - throttle: ${update_interval}

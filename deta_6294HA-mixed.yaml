@@ -3,12 +3,14 @@
 
 <<: !include esp_modules/tywe2s.yaml
 <<: !include common/status_led.yaml
+<<: !include common/deta_power_meter.yaml
 
 substitutions:
   status_led_pin: GPIO5
   left_name: "Left"
   right_name: "Right"
   right_icon: "mdi:lightbulb"
+  update_interval: 60s
 
 binary_sensor:
 - platform: gpio
@@ -51,30 +53,3 @@ output:
 - platform: gpio
   pin: GPIO13
   id: light_output_left
-
-# Power monitoring
-# Disable logging as it uses the same port
-logger:
-  baud_rate: 0
-
-uart:
-  rx_pin: RX
-  baud_rate: 4800
-  parity: EVEN
-
-sensor:
-  - platform: cse7766
-    current:
-      name: "${node_name_upper} Current"
-    voltage:
-      name: "${node_name_upper} Voltage"
-      filters:
-        - multiply: 1.867
-    power:
-      name: "${node_name_upper} Power"
-      filters:
-        - multiply: 1.867
-    energy:
-      name: "${node_name_upper} Energy"
-      filters:
-        - multiply: 1.867
