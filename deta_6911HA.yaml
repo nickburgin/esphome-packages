@@ -5,6 +5,7 @@
 
 substitutions:
   status_led_pin: GPIO4
+  restore_mode: ALWAYS_ON
 
 binary_sensor:
 - platform: gpio
@@ -22,6 +23,7 @@ switch:
   name: ${node_name_upper}
   pin: GPIO13
   id: relay
+  restore_mode: ${restore_mode}
 
 output:
 - platform: esp8266_pwm

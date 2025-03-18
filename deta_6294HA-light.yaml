@@ -8,8 +8,10 @@
 substitutions:
   status_led_pin: GPIO5
   left_name: "Left"
+  left_restore_mode: ALWAYS_OFF
   left_icon: "mdi:lightbulb"
   right_name: "Right"
+  right_restore_mode: ALWAYS_OFF
   right_icon: "mdi:lightbulb"
   update_interval: 60s
 
@@ -43,11 +45,13 @@ light:
   icon: ${left_icon}
   output: light_output_left
   id: relay_left
+  restore_mode: ${left_restore_mode}
 - platform: binary
   name: ${right_name}
   icon: ${right_icon}
   output: light_output_right
   id: relay_right
+  restore_mode: ${right_restore_mode}
 
 output:
 - platform: gpio

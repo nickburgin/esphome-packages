@@ -6,12 +6,16 @@
 substitutions:
   status_led_pin: GPIO0
   top_left_name: "Top Left"
+  top_left_restore_mode: ALWAYS_ON
   top_left_icon: "mdi:lightbulb"
   top_right_name: "Top Right"
+  top_right_restore_mode: ALWAYS_ON
   top_right_icon: "mdi:lightbulb"
   bottom_left_name: "Bottom Left"
+  bottom_left_restore_mode: ALWAYS_ON
   bottom_left_icon: "mdi:lightbulb"
   bottom_right_name: "Bottom Right"
+  bottom_right_restore_mode: ALWAYS_ON
   bottom_right_icon: "mdi:lightbulb"
 
 binary_sensor:
@@ -52,21 +56,25 @@ light:
     icon: ${top_left_icon}
     output: output_top_left
     id: relay_top_left
+    restore_mode: ${top_left_restore_mode}
   - platform: binary
     name: ${top_right_name}
     icon: ${top_right_icon}
     output: output_top_right
     id: relay_top_right
+    restore_mode: ${top_right_restore_mode}
   - platform: binary
     name: ${bottom_left_name}
     icon: ${bottom_left_icon}
     output: output_bottom_left
     id: relay_bottom_left
+    restore_mode: ${bottom_left_restore_mode}
   - platform: binary
     name: ${bottom_right_name}
     icon: ${bottom_right_icon}
     output: output_bottom_right
     id: relay_bottom_right
+    restore_mode: ${bottom_right_restore_mode}
 
 output:
   - platform: gpio

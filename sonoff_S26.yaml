@@ -4,6 +4,7 @@
 
 substitutions:
   status_led_pin: GPIO13
+  restore_mode: ALWAYS_ON
 
 esphome:
   name: ${node_name}
@@ -24,6 +25,7 @@ binary_sensor:
 
 switch:
 - platform: gpio
-  name: "${node_name_upper}"
+  name: ${node_name_upper}
   pin: GPIO12
   id: relay
+  restore_mode: ${restore_mode}

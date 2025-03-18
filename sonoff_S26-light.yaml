@@ -4,6 +4,7 @@
 
 substitutions:
   status_led_pin: GPIO13
+  restore_mode: ALWAYS_OFF
   icon: "mdi:lightbulb"
 
 esphome:
@@ -29,6 +30,7 @@ light:
   icon: ${icon}
   output: light_output
   id: relay
+  restore_mode: ${restore_mode}
 
 output:
 - platform: gpio

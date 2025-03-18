@@ -10,6 +10,7 @@
 
 substitutions:
   icon: "mdi:lightbulb"
+  restore_mode: ALWAYS_OFF
 
 logger:
   baud_rate: 0
@@ -29,3 +30,4 @@ light:
     switch_datapoint: 1
     max_value: 1000
     min_value: 250
+    restore_mode: ${restore_mode}

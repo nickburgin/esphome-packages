@@ -5,6 +5,7 @@
 
 substitutions:
   status_led_pin: GPIO13
+  restore_mode: ALWAYS_OFF
   icon: "mdi:lightbulb"
 
 binary_sensor:
@@ -25,6 +26,7 @@ light:
     output: light_output
     id: relay
     icon: ${icon}
+    restore_mode: ${restore_mode}
 
 output:
   - platform: gpio

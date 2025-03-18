@@ -8,7 +8,9 @@
 substitutions:
   status_led_pin: GPIO5
   left_name: "Left"
+  left_restore_mode: ALWAYS_ON
   right_name: "Right"
+  right_restore_mode: ALWAYS_ON
   update_interval: 60s
 
 binary_sensor:
@@ -37,10 +39,12 @@ binary_sensor:
 
 switch:
 - platform: gpio
-  name: ${right_name}
-  pin: GPIO14
-  id: relay_right
-- platform: gpio
   name: ${left_name}
   pin: GPIO13
   id: relay_left
+  restore_mode: ${left_restore_mode}
+- platform: gpio
+  name: ${right_name}
+  pin: GPIO14
+  id: relay_right
+  restore_mode: ${right_restore_mode}

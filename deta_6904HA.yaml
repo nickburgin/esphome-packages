@@ -6,9 +6,13 @@
 substitutions:
   status_led_pin: GPIO0
   top_left_name: "Top Left"
+  top_left_restore_mode: ALWAYS_ON
   top_right_name: "Top Right"
+  top_right_restore_mode: ALWAYS_ON
   bottom_left_name: "Bottom Left"
+  bottom_left_restore_mode: ALWAYS_ON
   bottom_right_name: "Bottom Right"
+  bottom_right_restore_mode: ALWAYS_ON
 
 binary_sensor:
 - platform: gpio
@@ -47,15 +51,19 @@ switch:
   name: ${top_left_name}
   pin: GPIO14
   id: relay_top_left
+  restore_mode: ${top_left_restore_mode}
 - platform: gpio
   name: ${top_right_name}
   pin: GPIO12
   id: relay_top_right
+  restore_mode: ${top_right_restore_mode}
 - platform: gpio
   name: ${bottom_left_name}
   pin: GPIO5
   id: relay_bottom_left
+  restore_mode: ${bottom_left_restore_mode}
 - platform: gpio
   name: ${bottom_right_name}
   pin: GPIO15
   id: relay_bottom_right
+  restore_mode: ${bottom_right_restore_mode}
